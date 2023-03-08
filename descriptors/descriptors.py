@@ -7,13 +7,13 @@ class GoodsName:
     S_RUS_UPPER = S_RUS.upper()
 
     @classmethod
-    def __verify_name(cls, name):
-        if not isinstance(name, str):
+    def __verify_name(cls, title):
+        if not isinstance(title, str):
             raise TypeError('Наименование товара должно быть строкового типа')
 
         letters = ascii_letters + cls.S_RUS + cls.S_RUS_UPPER
 
-        for letter in name:
+        for letter in title:
             if len(letter.strip(letters)) != 0:
                 raise TypeError("Вы можете использовать только буквы")
 
@@ -30,7 +30,7 @@ class GoodsName:
 
 class GoodsPrice:
     @classmethod
-    def verify_price(cls, price):
+    def __verify_price(cls, price):
         if not isinstance(price, float | int):
             raise TypeError('Цена должна быть указана в виде числа')
         if price <= 0:
@@ -43,13 +43,13 @@ class GoodsPrice:
         return getattr(instance, self.name)
 
     def __set__(self, instance, value):
-        self.verify_price(value)
+        self.__verify_price(value)
         setattr(instance, self.name, value)
 
 
 class GoodsQuantity:
     @classmethod
-    def verify_quantity(cls, quantity):
+    def __verify_quantity(cls, quantity):
         if not isinstance(quantity, int):
             raise TypeError('Количество товара указывается в виде целого числа')
         if quantity <= 0:
@@ -62,6 +62,6 @@ class GoodsQuantity:
         return getattr(instance, self.name)
 
     def __set__(self, instance, value):
-        self.verify_quantity(value)
+        self.__verify_quantity(value)
         setattr(instance, self.name, value)
 
