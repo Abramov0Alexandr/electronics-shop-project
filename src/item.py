@@ -1,4 +1,3 @@
-from exceptions.exceptions import InvalidRateAmount
 from descriptors import descriptors
 
 
@@ -38,4 +37,4 @@ class Item:
         """
         Применяет установленную скидку для конкретного товара.
         """
-        pass
+        self.price *= self.pay_rate
