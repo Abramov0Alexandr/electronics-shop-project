@@ -1,3 +1,7 @@
+from exceptions.exceptions import InvalidRateAmount
+from descriptors import descriptors
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -5,7 +9,9 @@ class Item:
     pay_rate = 1.0
     all = []
 
-    __slots__ = ("name", "price", "quantity")
+    name = descriptors.GoodsName()
+    price = descriptors.GoodsPrice()
+    quantity = descriptors.GoodsQuantity()
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
@@ -26,7 +32,7 @@ class Item:
 
         :return: Общая стоимость товара.
         """
-        pass
+        return self.price * self.quantity
 
     def apply_discount(self) -> None:
         """
