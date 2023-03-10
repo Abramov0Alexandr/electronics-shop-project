@@ -1,4 +1,8 @@
+import csv
 from descriptors import descriptors
+
+
+CSV_FILE = 'C:/Users/alexa/PycharmProjects/electronics-shop-project/src/items.csv'
 
 
 class Item:
@@ -46,3 +50,20 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.__pay_rate
+
+    @classmethod
+    def instantiate_from_csv(cls):
+        with open(CSV_FILE) as file:
+            file_reader = csv.DictReader(file, delimiter=',')
+            for i in file_reader:
+                cls.all.append(i)
+                # print(i)
+
+    @staticmethod
+    def string_to_number(any_string: str) -> int:
+        try:
+            return int(any_string)
+        except ValueError:
+            return int(any_string[0: any_string.find('.')])
+
+
