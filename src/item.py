@@ -5,12 +5,20 @@ class Item:
     """
     Класс для представления товара в магазине.
     """
-    pay_rate = 1.0
+    __pay_rate = 1.0
     all = []
 
     name = descriptors.GoodsName()
     price = descriptors.GoodsPrice()
     quantity = descriptors.GoodsQuantity()
+
+    @classmethod
+    def set_pay_rate(cls, new_rate):
+
+        if 0 <= cls.__pay_rate:
+            cls.__pay_rate = new_rate
+        else:
+            raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
@@ -37,4 +45,4 @@ class Item:
         """
         Применяет установленную скидку для конкретного товара.
         """
-        self.price *= self.pay_rate
+        self.price *= self.__pay_rate
