@@ -1,4 +1,5 @@
 from string import ascii_letters
+from exceptions import exceptions
 
 
 class GoodsName:
@@ -10,6 +11,8 @@ class GoodsName:
     def __verify_name(cls, title):
         if not isinstance(title, str):
             raise TypeError('Наименование товара должно быть строкового типа')
+        if len(title) > 10:
+            raise exceptions.InvalidNameLength('Длина наименования товара превышает 10 символов')
 
         letters = ascii_letters + cls.S_RUS + cls.S_RUS_UPPER
 
