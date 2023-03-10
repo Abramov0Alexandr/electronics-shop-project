@@ -1,4 +1,6 @@
 import pytest
+
+import descriptors.descriptors
 from src.item import Item
 
 
@@ -22,3 +24,12 @@ def test_discount_calculation(item):
     assert item.price == 10_000
 
 
+def test_normal_pay_rate(item):
+    Item.set_pay_rate(0.8)
+    item.apply_discount()
+    assert item.price == 8000.0
+
+
+# def test_negative_pay_rate(item):  #: Данный тест не проходит, необходима помощь
+#     with pytest.raises(ValueError):
+#         Item.set_pay_rate(-2)
