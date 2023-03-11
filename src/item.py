@@ -3,7 +3,7 @@ from descriptors import descriptors
 
 
 CSV_FILE = 'C:/Users/alexa/PycharmProjects/electronics-shop-project/src/items.csv'
-
+# CSV_FILE = 'items.csv'
 
 class Item:
     """
@@ -16,14 +16,6 @@ class Item:
     price = descriptors.GoodsPrice()
     quantity = descriptors.GoodsQuantity()
 
-    @classmethod
-    def set_pay_rate(cls, new_rate):
-
-        if 0 <= cls.__pay_rate:
-            cls.__pay_rate = new_rate
-        else:
-            raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
-
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
         Создание экземпляра класса item.
@@ -32,6 +24,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
+        # self.instantiate_from_csv()
         self.name = name
         self.price = price
         self.quantity = quantity
@@ -50,6 +43,14 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.__pay_rate
+
+    @classmethod
+    def set_pay_rate(cls, new_rate):
+
+        if 0 <= cls.__pay_rate:
+            cls.__pay_rate = new_rate
+        else:
+            raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
 
     @classmethod
     def instantiate_from_csv(cls):
