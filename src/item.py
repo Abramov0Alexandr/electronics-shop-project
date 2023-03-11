@@ -52,19 +52,19 @@ class Item:
         else:
             raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
 
-    # @classmethod
-    # def instantiate_from_csv(cls):
-    #     with open(CSV_FILE) as file:
-    #         file_reader = csv.DictReader(file, delimiter=',')
-    #         for i in file_reader:
-    #             cls.all.append(i)
-    #             # print(i)
-    #
-    # @staticmethod
-    # def string_to_number(any_string: str) -> int:
-    #     try:
-    #         return int(any_string)
-    #     except ValueError:
-    #         return int(any_string[0: any_string.find('.')])
+    @classmethod
+    def instantiate_from_csv(cls):
+        with open(CSV_FILE) as file:
+            file_reader = csv.DictReader(file, delimiter=',')
+            for i in file_reader:
+                cls.all.append(i)
+                # print(i)
+
+    @staticmethod
+    def string_to_number(any_string: str) -> int:
+        try:
+            return int(any_string)
+        except ValueError:
+            return int(any_string[0: any_string.find('.')])
 
 
