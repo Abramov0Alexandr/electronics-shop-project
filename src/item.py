@@ -4,6 +4,7 @@ from descriptors import descriptors
 
 CSV_FILE = '../src/items.csv'
 
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -23,7 +24,6 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        # self.instantiate_from_csv()
         self.name = name
         self.price = price
         self.quantity = quantity
@@ -57,7 +57,6 @@ class Item:
             file_reader = csv.DictReader(file, delimiter=',')
             for i in file_reader:
                 cls.all.append(i)
-                # print(i)
 
     @staticmethod
     def string_to_number(any_string: str) -> int:
@@ -65,5 +64,3 @@ class Item:
             return int(any_string)
         except ValueError:
             return int(any_string[0: any_string.find('.')])
-
-
