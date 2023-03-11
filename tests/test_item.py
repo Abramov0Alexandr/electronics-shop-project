@@ -30,6 +30,6 @@ def test_normal_pay_rate(item):
     assert item.price == 8000.0
 
 
-# def test_negative_pay_rate(item):  #: Данный тест не проходит, необходима помощь
-#     with pytest.raises(ValueError):
-#         Item.set_pay_rate(-2)
+def test_negative_pay_rate(item):  #: Данный тест не проходит, необходима помощь
+    with pytest.raises(ValueError):
+        Item.set_pay_rate(-2)
