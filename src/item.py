@@ -2,8 +2,7 @@ import csv
 from descriptors import descriptors
 
 
-CSV_FILE = 'C:/Users/alexa/PycharmProjects/electronics-shop-project/src/items.csv'
-# CSV_FILE = 'items.csv'
+CSV_FILE = '../src/items.csv'
 
 class Item:
     """
