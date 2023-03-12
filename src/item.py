@@ -8,7 +8,8 @@ class Item:
     """
     __pay_rate = 1.0
     all = []
-    CSV_FILE = '../src/items.csv'
+    # CSV_FILE = '../src/items.csv'  #: По совету одногруппника для успешного прохождения теста,
+    # перенес переменную внутрь класс метода
 
     name = descriptors.GoodsName()
     price = descriptors.GoodsPrice()
@@ -50,8 +51,8 @@ class Item:
             raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
 
     @classmethod
-    def instantiate_from_csv(cls):
-        with open(cls.CSV_FILE) as file:
+    def instantiate_from_csv(cls, CSV_PATH='../src/items.csv'):
+        with open(CSV_PATH) as file:
             file_reader = csv.DictReader(file, delimiter=',')
             for i in file_reader:
                 cls.all.append(i)
