@@ -1,3 +1,4 @@
+import csv
 from descriptors import descriptors
 
 
@@ -7,18 +8,12 @@ class Item:
     """
     __pay_rate = 1.0
     all = []
+    # CSV_FILE = '../src/items.csv'  #: По совету одногруппника для успешного прохождения теста,
+    # перенес переменную внутрь класс метода
 
     name = descriptors.GoodsName()
     price = descriptors.GoodsPrice()
     quantity = descriptors.GoodsQuantity()
-
-    @classmethod
-    def set_pay_rate(cls, new_rate):
-
-        if 0 <= cls.__pay_rate:
-            cls.__pay_rate = new_rate
-        else:
-            raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
@@ -46,3 +41,25 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.__pay_rate
+
+    @classmethod
+    def set_pay_rate(cls, new_rate):
+
+        if 0 <= new_rate:
+            cls.__pay_rate = new_rate
+        else:
+            raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
+
+    @classmethod
+    def instantiate_from_csv(cls, CSV_PATH='../src/items.csv'):
+        with open(CSV_PATH) as file:
+            file_reader = csv.DictReader(file, delimiter=',')
+            for i in file_reader:
+                cls.all.append(i)
+
+    @staticmethod
+    def string_to_number(any_string: str) -> int:
+        try:
+            return int(any_string)
+        except ValueError:
+            return int(any_string[0: any_string.find('.')])

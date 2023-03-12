@@ -1,0 +1,2 @@
+class InvalidNameLength(Exception):
+    pass
