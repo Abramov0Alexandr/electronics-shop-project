@@ -2,15 +2,13 @@ import csv
 from descriptors import descriptors
 
 
-CSV_FILE = '../src/items.csv'
-
-
 class Item:
     """
     Класс для представления товара в магазине.
     """
     __pay_rate = 1.0
     all = []
+    CSV_FILE = '../src/items.csv'
 
     name = descriptors.GoodsName()
     price = descriptors.GoodsPrice()
@@ -53,7 +51,7 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open(CSV_FILE) as file:
+        with open(cls.CSV_FILE) as file:
             file_reader = csv.DictReader(file, delimiter=',')
             for i in file_reader:
                 cls.all.append(i)
