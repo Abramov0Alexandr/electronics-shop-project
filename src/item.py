@@ -42,6 +42,9 @@ class Item:
         """
         self.price *= self.__pay_rate
 
+    def __str__(self):
+        return f"{self.name} {self.price} {self.quantity}"
+
     @classmethod
     def set_pay_rate(cls, new_rate):
 
@@ -55,7 +58,8 @@ class Item:
         with open(CSV_PATH) as file:
             file_reader = csv.DictReader(file, delimiter=',')
             for i in file_reader:
-                cls.all.append(i)
+                name, price, quantity = i.get('name'), int(i.get('price')), int(i.get('quantity'))
+                cls.all.append((name, price, quantity))
 
     @staticmethod
     def string_to_number(any_string: str) -> int:
