@@ -28,6 +28,10 @@ def test_normal_pay_rate(item):
     assert item.price == 8000.0
 
 
+def test_str_instance(item):
+    assert str(item) == 'Смартфон 10000 20'
+
+
 def test_negative_pay_rate():
     with pytest.raises(ValueError):
         Item.set_pay_rate(-2)
@@ -37,5 +41,6 @@ def test_str_to_num():
     assert Item.string_to_number('9.2') == 9
 
 
-# def test_get_from_cvs():  #: Тест не проходит, прошу помощи
-#     assert Item.instantiate_from_csv(CSV_PATH='../src/items.csv')
+def test_get_from_cvs():
+    Item.instantiate_from_csv(CSV_PATH='./src/items.csv')
+
