@@ -29,7 +29,11 @@ def test_normal_pay_rate(item):
 
 
 def test_str_instance(item):
-    assert str(item) == 'Смартфон 10000 20'
+    assert str(item) == 'Смартфон'
+
+
+def test_repr_instance(item):
+    assert repr(item) == "Item('Смартфон', 10000, 20)"
 
 
 def test_negative_pay_rate():
