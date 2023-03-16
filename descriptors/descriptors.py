@@ -18,7 +18,7 @@ class GoodsName:
 
         for letter in title:
             if len(letter.strip(letters)) != 0:
-                raise TypeError("Вы можете использовать только буквы")
+                raise exceptions.NameException("Вы можете использовать только буквы")
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -35,9 +35,9 @@ class GoodsPrice:
     @classmethod
     def __verify_price(cls, price):
         if not isinstance(price, float | int):
-            raise TypeError('Цена должна быть указана в виде числа')
+            raise exceptions.PriceException('Цена должна быть указана в виде числа')
         if price <= 0:
-            raise ValueError('Цена не может быть отрицательной')
+            raise exceptions.PriceException('Цена не может быть отрицательной')
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -54,9 +54,9 @@ class GoodsQuantity:
     @classmethod
     def __verify_quantity(cls, quantity):
         if not isinstance(quantity, int):
-            raise TypeError('Количество товара указывается в виде целого числа')
+            raise exceptions.PriceException('Количество товара указывается в виде целого числа')
         if quantity <= 0:
-            raise ValueError('Количество товара не может быть отрицательным')
+            raise exceptions.PriceException('Количество товара не может быть отрицательным')
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
