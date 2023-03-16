@@ -8,8 +8,6 @@ class Item:
     """
     __pay_rate = 1.0
     all = []
-    # CSV_FILE = '../src/items.csv'  #: По совету одногруппника для успешного прохождения теста,
-    # перенес переменную внутрь класс метода
 
     name = descriptors.GoodsName()
     price = descriptors.GoodsPrice()
