@@ -54,9 +54,9 @@ class GoodsQuantity:
     @classmethod
     def __verify_quantity(cls, quantity):
         if not isinstance(quantity, int):
-            raise exceptions.PriceException('Количество товара указывается в виде целого числа')
+            raise exceptions.GoodsException('Количество товара указывается в виде целого числа')
         if quantity <= 0:
-            raise exceptions.PriceException('Количество товара не может быть отрицательным')
+            raise exceptions.GoodsException('Количество товара не может быть отрицательным')
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
