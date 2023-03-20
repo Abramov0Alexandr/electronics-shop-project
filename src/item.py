@@ -40,14 +40,14 @@ class Item:
         """
         self.price *= self.__pay_rate
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
     @classmethod
-    def set_pay_rate(cls, new_rate):
+    def set_pay_rate(cls, new_rate) -> None:
 
         if 0 <= new_rate:
             cls.__pay_rate = new_rate
@@ -55,7 +55,7 @@ class Item:
             raise ValueError("Значение индексации не может быть отрицательным или равным '0'")
 
     @classmethod
-    def instantiate_from_csv(cls, CSV_PATH='../src/items.csv'):
+    def instantiate_from_csv(cls, CSV_PATH='../src/items.csv') -> None:
         with open(CSV_PATH) as file:
             file_reader = csv.DictReader(file, delimiter=',')
             for i in file_reader:
