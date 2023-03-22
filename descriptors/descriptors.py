@@ -4,21 +4,17 @@ from exceptions import exceptions
 
 class GoodsName:
 
-    S_RUS = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя-'
-    S_RUS_UPPER = S_RUS.upper()
-
     @classmethod
     def __verify_name(cls, title):
         if not isinstance(title, str):
             raise TypeError('Наименование товара должно быть строкового типа')
-        if len(title) > 10:
-            raise exceptions.InvalidNameLength('Длина наименования товара превышает 10 символов')
 
-        letters = ascii_letters + cls.S_RUS + cls.S_RUS_UPPER
+        if len(title) == 0:
+            raise exceptions.InvalidNameLength('Наименование товара не может быть пустой строкой')
 
-        for letter in title:
-            if len(letter.strip(letters)) != 0:
-                raise exceptions.NameException("Вы можете использовать только буквы")
+        for i in title.split():
+            if len(i) > 10:
+                raise exceptions.InvalidNameLength('Длина наименования товара превышает 10 символов')
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -68,3 +64,20 @@ class GoodsQuantity:
         self.__verify_quantity(value)
         setattr(instance, self.name, value)
 
+
+class SimCardValue:
+
+    @classmethod
+    def __verify_number_of_sim(cls, value: int):
+        if not isinstance(value, int) or value <= 0:
+            raise exceptions.InvalidSimCardValue('Количество физических SIM-карт должно быть целым числом больше нуля.')
+
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __get__(self, instance, owner):
+        return getattr(instance, self.name)
+
+    def __set__(self, instance, value):
+        self.__verify_number_of_sim(value)
+        setattr(instance, self.name, value)

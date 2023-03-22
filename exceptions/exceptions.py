@@ -12,3 +12,7 @@ class PriceException(Exception):
 
 class GoodsException(Exception):
     pass
+
+
+class InvalidSimCardValue(Exception):
+    pass
