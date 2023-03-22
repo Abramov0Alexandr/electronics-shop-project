@@ -2,11 +2,6 @@ import pytest
 from src.item import Item
 
 
-@pytest.fixture
-def item():
-    return Item("Смартфон", 10000, 20)
-
-
 def test_item_init(item):
     assert item.name == "Смартфон"
     assert item.price == 10_000
