@@ -12,11 +12,9 @@ class GoodsName:
         if len(title) == 0:
             raise exceptions.InvalidNameLength('Наименование товара не может быть пустой строкой')
 
-        if len(title) > 10:
-            raise exceptions.InvalidNameLength('Длина наименования товара превышает 10 символов')
-
-        if len(title.strip()) == 0:
-            raise exceptions.NameException("Вы не можете использовать пробел в качестве названия товара")
+        for i in title.split():
+            if len(i) > 10:
+                raise exceptions.InvalidNameLength('Длина наименования товара превышает 10 символов')
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
