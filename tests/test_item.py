@@ -42,4 +42,3 @@ def test_str_to_num():
 
 def test_get_from_cvs():
     Item.instantiate_from_csv(CSV_PATH='./src/items.csv')
-

@@ -26,5 +26,3 @@ class Phone(Item):
     def __verify_classes(cls, other):
         if not isinstance(other, Item | Phone):
             raise TypeError("Действие допустимо только для экземпляров класса Item или Phone")
-
-
