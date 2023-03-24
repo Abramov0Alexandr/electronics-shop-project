@@ -40,6 +40,11 @@ class Item:
         """
         self.price *= self.__pay_rate
 
+    def __add__(self, other):
+        if not isinstance(other, Item):
+            raise TypeError('Действие допустимо только для экземпляров класса Item или Phone')
+        return self.quantity + other.quantity
+
     def __str__(self) -> str:
         return f"{self.name}"
 
