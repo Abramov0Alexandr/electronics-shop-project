@@ -7,9 +7,9 @@ class GoodsName:
     @classmethod
     def __verify_name(cls, title):
         if not isinstance(title, str):
-            raise TypeError('Наименование товара должно быть строкового типа')
+            raise exceptions.NameException('Наименование товара должно быть строкового типа')
 
-        if len(title) == 0:
+        if len(title.strip()) == 0:
             raise exceptions.InvalidNameLength('Наименование товара не может быть пустой строкой')
 
         for i in title.split():
@@ -51,7 +51,7 @@ class GoodsQuantity:
     def __verify_quantity(cls, quantity):
         if not isinstance(quantity, int):
             raise exceptions.GoodsException('Количество товара указывается в виде целого числа')
-        if quantity <= 0:
+        if quantity < 0:
             raise exceptions.GoodsException('Количество товара не может быть отрицательным')
 
     def __set_name__(self, owner, name):
