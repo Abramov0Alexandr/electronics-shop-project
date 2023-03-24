@@ -21,7 +21,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name.strip()
+        self.name = name
         self.price = price
         self.quantity = quantity
         self.all.append(self)
@@ -39,6 +39,11 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.__pay_rate
+
+    def __add__(self, other):
+        if not isinstance(other, Item):
+            raise TypeError('Действие допустимо только для экземпляров класса Item или Phone')
+        return self.quantity + other.quantity
 
     def __str__(self) -> str:
         return f"{self.name}"
