@@ -42,3 +42,13 @@ def test_str_to_num():
 
 def test_get_from_cvs():
     Item.instantiate_from_csv(CSV_PATH='./src/items.csv')
+
+
+def test_normal_add(item):
+    test_item = Item('Телефон', 1000, 3)
+    assert item + test_item == 23
+
+
+def test_error_add(item):
+    with pytest.raises(TypeError):
+        result = item + 10
