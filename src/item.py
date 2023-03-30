@@ -1,4 +1,6 @@
 import csv
+
+import exceptions.exceptions
 from descriptors import descriptors
 
 
@@ -62,11 +64,16 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, CSV_PATH='../src/items.csv') -> None:
-        with open(CSV_PATH) as file:
-            file_reader = csv.DictReader(file, delimiter=',')
-            for i in file_reader:
-                name, price, quantity = i.get('name'), int(i.get('price')), int(i.get('quantity'))
-                cls.all.append((name, price, quantity))
+        try:
+            with open(CSV_PATH) as file:
+                file_reader = csv.DictReader(file, delimiter=',')
+                for i in file_reader:
+                    if any(i.get(value) is None for value in ['name', 'price', 'quantity']):
+                        raise exceptions.exceptions.InstantiateCSVError
+                    name, price, quantity = i.get('name'), int(i.get('price')), int(i.get('quantity'))
+                    cls.all.append((name, price, quantity))
+        except FileNotFoundError:
+            print('Отсутствует файл item.csv')
 
     @staticmethod
     def string_to_number(any_string: str) -> int:
