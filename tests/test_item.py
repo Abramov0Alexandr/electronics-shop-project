@@ -1,4 +1,5 @@
 import pytest
+import exceptions.exceptions
 from src.item import Item
 
 
@@ -40,8 +41,18 @@ def test_str_to_num():
     assert Item.string_to_number('9.2') == 9
 
 
-def test_get_from_cvs():
+def test_get_from_cvs_normal():
     Item.instantiate_from_csv(CSV_PATH='./src/items.csv')
+
+
+def test_unreal_csv_file():
+    Item.instantiate_from_csv(CSV_PATH='./src/unreal_file.csv')
+    assert 'Отсутствует файл item.csv'
+
+
+def test_incorrect_csv_file():
+    with pytest.raises(exceptions.exceptions.InstantiateCSVError):
+        Item.instantiate_from_csv(CSV_PATH='./tests/incorrect_test_file.csv')
 
 
 def test_normal_add(item):
