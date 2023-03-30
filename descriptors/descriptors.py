@@ -6,14 +6,14 @@ class GoodsName:
     @classmethod
     def __verify_name(cls, title):
         if not isinstance(title, str):
-            raise exceptions.NameException('Наименование товара должно быть строкового типа')
+            raise exceptions.TypeNameException
 
         if len(title.strip()) == 0:
-            raise exceptions.InvalidNameLength('Наименование товара не может быть пустой строкой')
+            raise exceptions.EmptyNameLen
 
         for i in title.split():
             if len(i) > 10:
-                raise exceptions.InvalidNameLength('Длина наименования товара превышает 10 символов')
+                raise exceptions.InvalidNameLength
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -30,9 +30,9 @@ class GoodsPrice:
     @classmethod
     def __verify_price(cls, price):
         if not isinstance(price, float | int):
-            raise exceptions.PriceException('Цена должна быть указана в виде числа')
+            raise exceptions.InvalidTypePrice
         if price <= 0:
-            raise exceptions.PriceException('Цена не может быть отрицательной')
+            raise exceptions.NegativePriceException
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -49,9 +49,9 @@ class GoodsQuantity:
     @classmethod
     def __verify_quantity(cls, quantity):
         if not isinstance(quantity, int):
-            raise exceptions.GoodsException('Количество товара указывается в виде целого числа')
+            raise exceptions.InvalidTypeQuantity
         if quantity < 0:
-            raise exceptions.GoodsException('Количество товара не может быть отрицательным')
+            raise exceptions.InvalidTypeQuantity
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -69,7 +69,7 @@ class SimCardValue:
     @classmethod
     def __verify_number_of_sim(cls, value: int):
         if not isinstance(value, int) or value <= 0:
-            raise exceptions.InvalidSimCardValue('Количество физических SIM-карт должно быть целым числом больше нуля.')
+            raise exceptions.InvalidSimCardType
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
