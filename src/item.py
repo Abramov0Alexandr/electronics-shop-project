@@ -72,8 +72,8 @@ class Item:
                         raise exceptions.exceptions.InstantiateCSVError
                     name, price, quantity = i.get('name'), int(i.get('price')), int(i.get('quantity'))
                     cls.all.append((name, price, quantity))
-        except FileNotFoundError as e:
-            print(e)
+        except FileNotFoundError:
+            print('Отсутствует файл item.csv')
 
     @staticmethod
     def string_to_number(any_string: str) -> int:
