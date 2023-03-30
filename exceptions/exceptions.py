@@ -18,8 +18,13 @@ class SimCardException(Exception):
     pass
 
 
+class InstantiateCSVException(Exception):
+    """Базовый класс исключения при некорректной обработки CSV файла"""
+
+
 class InvalidNameLength(GoodsTitleException):
     """Ошибка инициализируется в случае, если название превышает 10 символов"""
+
     def __init__(self, *args):
         self.msg = args[0] if args else 'Длина наименования товара превышает 10 символов'
 
@@ -29,6 +34,7 @@ class InvalidNameLength(GoodsTitleException):
 
 class EmptyNameLen(GoodsTitleException):
     """Ошибка инициализируется в случае, если название состоит из пустой строки"""
+
     def __init__(self, *args):
         self.msg = args[0] if args else 'Наименование товара не может быть пустой строкой'
 
@@ -39,6 +45,7 @@ class EmptyNameLen(GoodsTitleException):
 class TypeNameException(GoodsTitleException):
     """Ошибка инициализируется в случае, если для указания имени применяется
     не строковый тип данных"""
+
     def __init__(self, *args):
         self.msg = args[0] if args else 'Наименование товара должно быть строкового типа'
 
@@ -48,6 +55,7 @@ class TypeNameException(GoodsTitleException):
 
 class InvalidTypePrice(PriceException):
     """Ошибка инициализируется при попытке установить нечисловой тип данных"""
+
     def __init__(self, *args):
         self.msg = args[0] if args else 'Цена должна быть указана в виде числа'
 
@@ -68,6 +76,7 @@ class NegativePriceException(PriceException):
 class InvalidTypeQuantity(GoodsQuantityException):
     """Ошибка инициализируется при попытке указать отрицательное или нечисловое
     количество товара"""
+
     def __init__(self, *args):
         self.msg = args[0] if args else 'Количество товара указывается в виде целого неотрицательного числа'
 
@@ -78,8 +87,20 @@ class InvalidTypeQuantity(GoodsQuantityException):
 class InvalidSimCardType(SimCardException):
     """Ошибка инициализируется при попытке установить отрицательное или нулевое
     кол-во симкард"""
-    def __init__(self,*args):
+
+    def __init__(self, *args):
         self.msg = args[0] if args else 'Количество физических SIM-карт должно быть целым числом больше нуля'
+
+    def __str__(self):
+        return self.msg
+
+
+class InstantiateCSVError(InstantiateCSVException):
+    """Ошибка инициализируется в случае, если в файле отсутствуют все необходимые поля"""
+
+    def __init__(self, *args):
+        self.msg = args[0] if args else "Файл не содержит всех необходимых полей для заполнения " \
+                                        "атрибутов класса"
 
     def __str__(self):
         return self.msg
