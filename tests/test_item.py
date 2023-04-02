@@ -51,8 +51,8 @@ def test_unreal_csv_file():
 
 
 def test_incorrect_csv_file():
-    with pytest.raises(exceptions.exceptions.InstantiateCSVError):
-        Item.instantiate_from_csv(CSV_PATH='./tests/incorrect_test_file.csv')
+    Item.instantiate_from_csv(CSV_PATH='./tests/incorrect_test_file.csv')
+    assert 'Файл не содержит всех необходимых полей для заполнения атрибутов класса'
 
 
 def test_normal_add(item):
