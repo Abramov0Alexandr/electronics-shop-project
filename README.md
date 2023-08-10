@@ -21,7 +21,7 @@
    git clone git@github.com:Abramov0Alexandr/electronics-shop-project.git
    ```
 
-2. Установите предопределенные зависимости:
+ 2. Установите предопределенные зависимости:
 
    ```bash
    poetry install
